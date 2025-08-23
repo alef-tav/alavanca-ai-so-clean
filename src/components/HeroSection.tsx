@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-full">
@@ -19,34 +19,29 @@ const HeroSection = () => {
             allowFullScreen
           ></iframe>
           {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-primary/60"></div>
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-primary/70"></div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="max-w-4xl">
-          <h1 className="font-poppins font-bold text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
-            <span className="text-primary-foreground">Transforme o seu negócio.</span>{" "}
-            <span className="text-accent">Automatize</span>{" "}
-            <span className="text-primary-foreground">com sofisticação.</span>
-          </h1>
-          
-          <p className="font-poppins text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl leading-relaxed">
-            A Alavanca AI implementa soluções de inteligência artificial que 
-            impulsionam o seu crescimento de forma elegante e eficiente.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="font-poppins font-medium text-lg px-8 py-4 bg-accent hover:bg-accent/90 text-primary border-0">
-              Agendar Consultoria Gratuita
-            </Button>
-            <Button variant="outline" size="lg" className="font-poppins font-medium text-lg px-8 py-4 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-              Ver Nosso Portfólio
-            </Button>
-          </div>
+      <div className="relative z-10 text-center px-6">
+        <h1 className="font-poppins font-bold text-4xl md:text-6xl lg:text-7xl leading-tight mb-6 text-primary-foreground max-w-4xl">
+          Olá, Somos a Alavanca AI
+        </h1>
+        
+        <p className="font-poppins text-lg md:text-xl text-primary-foreground/90 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Criamos soluções de inteligência artificial sofisticadas e funcionais com código limpo e eficiente.
+          <br />
+          Deixe-nos ajudar a dar vida à sua visão.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <Button size="lg" className="font-poppins font-medium text-lg px-8 py-4 bg-accent hover:bg-accent/90 text-primary border-0 min-w-[200px]">
+            Ver Nosso Trabalho
+          </Button>
+          <Button variant="outline" size="lg" className="font-poppins font-medium text-lg px-8 py-4 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all min-w-[200px]">
+            Entre em Contato
+          </Button>
         </div>
       </div>
     </section>

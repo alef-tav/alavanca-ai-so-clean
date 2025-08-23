@@ -2,31 +2,31 @@ import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="w-full bg-background border-b border-border/50">
-      <div className="container mx-auto px-6 py-4">
+    <header className="absolute top-0 left-0 right-0 z-20 bg-transparent">
+      <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">AI</span>
-            </div>
-            <span className="font-poppins font-semibold text-xl text-primary">
+            <span className="font-poppins font-bold text-2xl text-accent">
               Alavanca AI
             </span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#solucoes" className="font-poppins text-foreground hover:text-primary transition-colors">
-              Soluções
+            <a href="#home" className="font-poppins text-primary-foreground hover:text-accent transition-colors border-b-2 border-accent pb-1">
+              Home
             </a>
-            <a href="#portfolio" className="font-poppins text-foreground hover:text-primary transition-colors">
-              Portfólio
+            <a href="#about" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              About
             </a>
-            <a href="#contato" className="font-poppins text-foreground hover:text-primary transition-colors">
-              Contato
+            <a href="#services" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Services
             </a>
-            <Button className="font-poppins font-medium">
-              Consultoria Gratuita
-            </Button>
+            <a href="#portfolio" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Portfolio
+            </a>
+            <a href="#contact" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Contact
+            </a>
           </nav>
         </div>
       </div>
