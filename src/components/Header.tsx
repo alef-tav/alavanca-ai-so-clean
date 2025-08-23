@@ -12,20 +12,20 @@ const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="font-poppins text-primary-foreground hover:text-accent transition-colors border-b-2 border-accent pb-1">
+            <a href="/" className="font-poppins text-primary-foreground hover:text-accent transition-colors">
               Home
             </a>
-            <a href="#about" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
-              About
+            <a href="/about" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Sobre
             </a>
-            <a href="#services" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
-              Services
+            <a href="#solutions" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Soluções
             </a>
-            <a href="#portfolio" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
-              Portfolio
+            <a href="/portfolio" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Portfólio
             </a>
-            <a href="#contact" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
-              Contact
+            <a href="/contact" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+              Contato
             </a>
           </nav>
         </div>
