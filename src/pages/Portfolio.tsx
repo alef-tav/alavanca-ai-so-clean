@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
+import VideoModal from "@/components/VideoModal";
 
 const Portfolio = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -212,6 +215,16 @@ const Portfolio = () => {
   const getRecentVideos = () => videos.filter(video => video.category === 'recent').slice(0, 4);
   const getInfluencerVideos = () => videos.filter(video => video.category === 'influencers').slice(0, 4);
 
+  const handlePlayVideo = (video) => {
+    setSelectedVideo(video);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedVideo(null);
+  };
+
   return (
     <div className="min-h-screen bg-black font-poppins text-white">
       <Header />
@@ -238,6 +251,7 @@ const Portfolio = () => {
                 <div
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer"
+                  onClick={() => handlePlayVideo(video)}
                 >
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/600/400" ? (
@@ -295,6 +309,7 @@ const Portfolio = () => {
                 <div
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                  onClick={() => handlePlayVideo(video)}
                 >
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
@@ -324,14 +339,6 @@ const Portfolio = () => {
                       <p className="font-poppins text-gray-300 text-xs">
                         {video.author}
                       </p>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Button 
-                          size="sm"
-                          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xs px-3 py-1 rounded border-2 border-transparent hover:border-purple-400 transition-all duration-300"
-                        >
-                          Ver Detalhes
-                        </Button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -370,6 +377,7 @@ const Portfolio = () => {
                 <div
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                  onClick={() => handlePlayVideo(video)}
                 >
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
@@ -427,6 +435,7 @@ const Portfolio = () => {
                 <div
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                  onClick={() => handlePlayVideo(video)}
                 >
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
@@ -519,6 +528,13 @@ const Portfolio = () => {
           </div>
         </section>
       </main>
+      
+      <VideoModal 
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        video={selectedVideo}
+      />
+      
       <Footer />
     </div>
   );
