@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Upload } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import VideoModal from "@/components/VideoModal";
+import { useToast } from "@/hooks/use-toast";
 
 const Portfolio = () => {
   const [videos, setVideos] = useState([]);
@@ -13,6 +14,7 @@ const Portfolio = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   useEffect(() => {
     fetchVideos();
@@ -220,6 +222,34 @@ const Portfolio = () => {
     setIsModalOpen(true);
   };
 
+  const handleDeleteVideo = async (videoId, event) => {
+    event.stopPropagation(); // Prevent opening video modal
+    
+    try {
+      const { error } = await supabase
+        .from('videos')
+        .delete()
+        .eq('id', videoId);
+
+      if (error) throw error;
+
+      // Update local state
+      setVideos(videos.filter(v => v.id !== videoId));
+      
+      toast({
+        title: "Sucesso!",
+        description: "Vídeo removido com sucesso!",
+      });
+    } catch (error) {
+      console.error('Error deleting video:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao remover vídeo. Tente novamente.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedVideo(null);
@@ -253,6 +283,16 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer"
                   onClick={() => handlePlayVideo(video)}
                 >
+                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {typeof video.id === 'string' && (
+                    <button
+                      onClick={(e) => handleDeleteVideo(video.id, e)}
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      title="Remover vídeo"
+                    >
+                      <X className="w-3 h-3 text-white" />
+                    </button>
+                  )}
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/600/400" ? (
                       <img 
@@ -314,6 +354,16 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => handlePlayVideo(video)}
                 >
+                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {typeof video.id === 'string' && (
+                    <button
+                      onClick={(e) => handleDeleteVideo(video.id, e)}
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      title="Remover vídeo"
+                    >
+                      <X className="w-3 h-3 text-white" />
+                    </button>
+                  )}
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
                       <img 
@@ -385,6 +435,16 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => handlePlayVideo(video)}
                 >
+                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {typeof video.id === 'string' && (
+                    <button
+                      onClick={(e) => handleDeleteVideo(video.id, e)}
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      title="Remover vídeo"
+                    >
+                      <X className="w-3 h-3 text-white" />
+                    </button>
+                  )}
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
                       <img 
@@ -446,6 +506,16 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => handlePlayVideo(video)}
                 >
+                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {typeof video.id === 'string' && (
+                    <button
+                      onClick={(e) => handleDeleteVideo(video.id, e)}
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      title="Remover vídeo"
+                    >
+                      <X className="w-3 h-3 text-white" />
+                    </button>
+                  )}
                   <div className="aspect-video relative">
                     {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
                       <img 
