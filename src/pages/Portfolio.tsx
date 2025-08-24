@@ -266,12 +266,13 @@ const Portfolio = () => {
               <h1 className="font-poppins font-bold text-3xl text-white">
                 Tendências
               </h1>
+              {/* Botão transparente - só admins sabem que está aqui */}
               <Button 
-                className="bg-green-600 hover:bg-green-700 text-white font-poppins font-medium flex items-center gap-2"
+                className="bg-transparent hover:bg-transparent text-transparent font-poppins font-medium flex items-center gap-2 border-none shadow-none"
                 size="lg"
                 onClick={() => navigate('/upload')}
               >
-                <Upload className="w-5 h-5" />
+                <Upload className="w-5 h-5 opacity-0" />
                 Upload de Vídeo
               </Button>
             </div>
@@ -283,14 +284,14 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer"
                   onClick={() => handlePlayVideo(video)}
                 >
-                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {/* Botão de remoção transparente - só admins sabem que está aqui */}
                   {typeof video.id === 'string' && (
                     <button
                       onClick={(e) => handleDeleteVideo(video.id, e)}
-                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-transparent hover:bg-transparent rounded-full flex items-center justify-center opacity-0 transition-opacity duration-200"
                       title="Remover vídeo"
                     >
-                      <X className="w-3 h-3 text-white" />
+                      <X className="w-3 h-3 text-transparent" />
                     </button>
                   )}
                   <div className="aspect-video relative">
@@ -354,14 +355,14 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => handlePlayVideo(video)}
                 >
-                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {/* Botão de remoção transparente - só admins sabem que está aqui */}
                   {typeof video.id === 'string' && (
                     <button
                       onClick={(e) => handleDeleteVideo(video.id, e)}
-                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-transparent hover:bg-transparent rounded-full flex items-center justify-center opacity-0 transition-opacity duration-200"
                       title="Remover vídeo"
                     >
-                      <X className="w-3 h-3 text-white" />
+                      <X className="w-3 h-3 text-transparent" />
                     </button>
                   )}
                   <div className="aspect-video relative">
@@ -435,14 +436,14 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => handlePlayVideo(video)}
                 >
-                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {/* Botão de remoção transparente - só admins sabem que está aqui */}
                   {typeof video.id === 'string' && (
                     <button
                       onClick={(e) => handleDeleteVideo(video.id, e)}
-                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-transparent hover:bg-transparent rounded-full flex items-center justify-center opacity-0 transition-opacity duration-200"
                       title="Remover vídeo"
                     >
-                      <X className="w-3 h-3 text-white" />
+                      <X className="w-3 h-3 text-transparent" />
                     </button>
                   )}
                   <div className="aspect-video relative">
@@ -506,14 +507,14 @@ const Portfolio = () => {
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                   onClick={() => handlePlayVideo(video)}
                 >
-                  {/* Botão de remoção - só aparece para vídeos reais (não mock) */}
+                  {/* Botão de remoção transparente - só admins sabem que está aqui */}
                   {typeof video.id === 'string' && (
                     <button
                       onClick={(e) => handleDeleteVideo(video.id, e)}
-                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-red-500/80 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-transparent hover:bg-transparent rounded-full flex items-center justify-center opacity-0 transition-opacity duration-200"
                       title="Remover vídeo"
                     >
-                      <X className="w-3 h-3 text-white" />
+                      <X className="w-3 h-3 text-transparent" />
                     </button>
                   )}
                   <div className="aspect-video relative">
