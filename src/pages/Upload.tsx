@@ -8,6 +8,7 @@ import { Upload as UploadIcon, Video, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { extractVideoThumbnail } from "@/lib/videoUtils";
 
 const Upload = () => {
   const [title, setTitle] = useState("");
@@ -41,20 +42,49 @@ const Upload = () => {
 
       if (videoError) throw videoError;
 
-      // Upload thumbnail if provided
+      // Extract thumbnail from video automatically
       let thumbnailUrl = null;
-      if (thumbnailFile) {
-        const thumbnailPath = `${Date.now()}-${thumbnailFile.name}`;
+      try {
+        const thumbnailBlob = await extractVideoThumbnail(videoFile);
+        
+        // Convert blob URL to actual blob
+        const response = await fetch(thumbnailBlob);
+        const blob = await response.blob();
+        
+        // Upload auto-generated thumbnail
+        const thumbnailPath = `${Date.now()}-thumbnail.jpg`;
         const { error: thumbnailError } = await supabase.storage
           .from('thumbnails')
-          .upload(thumbnailPath, thumbnailFile);
+          .upload(thumbnailPath, blob);
 
-        if (thumbnailError) throw thumbnailError;
+        if (!thumbnailError) {
+          const { data: thumbnailData } = supabase.storage
+            .from('thumbnails')
+            .getPublicUrl(thumbnailPath);
+          thumbnailUrl = thumbnailData.publicUrl;
+        }
+        
+        // Clean up blob URL
+        URL.revokeObjectURL(thumbnailBlob);
+      } catch (thumbnailError) {
+        console.log('Failed to extract thumbnail, will use default:', thumbnailError);
+        // Use default placeholder if thumbnail extraction fails
+        thumbnailUrl = null;
+      }
 
-        const { data: thumbnailData } = supabase.storage
+      // If user uploaded custom thumbnail, use that instead
+      if (thumbnailFile) {
+        const customThumbnailPath = `${Date.now()}-custom-${thumbnailFile.name}`;
+        const { error: customThumbnailError } = await supabase.storage
           .from('thumbnails')
-          .getPublicUrl(thumbnailPath);
-        thumbnailUrl = thumbnailData.publicUrl;
+          .upload(customThumbnailPath, thumbnailFile);
+
+        if (!customThumbnailError) {
+          const { data: customThumbnailData } = supabase.storage
+            .from('thumbnails')
+            .getPublicUrl(customThumbnailPath);
+          thumbnailUrl = customThumbnailData.publicUrl;
+        }
       }
 
       // Get video URL

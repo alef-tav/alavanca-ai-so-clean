@@ -188,8 +188,16 @@ const Portfolio = () => {
 
       if (error) throw error;
       
-      // Se não há vídeos no banco, usa dados de exemplo
-      setVideos(data && data.length > 0 ? data : mockVideos);
+      // Combina dados do banco com dados de exemplo para preencher as seções
+      const dbVideos = data || [];
+      const allVideos = [...dbVideos, ...mockVideos];
+      
+      // Remove duplicatas baseado no título
+      const uniqueVideos = allVideos.filter((video, index, self) => 
+        index === self.findIndex(v => v.title === video.title)
+      );
+      
+      setVideos(uniqueVideos);
     } catch (error) {
       console.error('Error fetching videos:', error);
       // Em caso de erro, usa dados de exemplo
@@ -231,10 +239,25 @@ const Portfolio = () => {
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center relative">
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center z-10">
-                      <span className="text-white text-2xl">▶</span>
+                  <div className="aspect-video relative">
+                    {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/600/400" ? (
+                      <img 
+                        src={video.thumbnail_url} 
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center">
+                        <div className="text-6xl opacity-30">🎬</div>
+                      </div>
+                    )}
+                    
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-purple-600/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <span className="text-white text-lg ml-1">▶</span>
+                      </div>
                     </div>
                     
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -273,13 +296,26 @@ const Portfolio = () => {
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center relative">
+                  <div className="aspect-video relative">
+                    {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
+                      <img 
+                        src={video.thumbnail_url} 
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center">
+                        <div className="text-4xl opacity-30">🎬</div>
+                      </div>
+                    )}
                     
-                    <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-lg">▶</span>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors"></div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-10 h-10 bg-purple-600/90 rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-white text-sm ml-0.5">▶</span>
+                      </div>
                     </div>
-                    
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <h3 className="font-poppins font-semibold text-white text-sm mb-1">
@@ -335,9 +371,25 @@ const Portfolio = () => {
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center relative">
-                    <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-sm">▶</span>
+                  <div className="aspect-video relative">
+                    {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
+                      <img 
+                        src={video.thumbnail_url} 
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center">
+                        <div className="text-3xl opacity-30">🎬</div>
+                      </div>
+                    )}
+                    
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors"></div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-8 h-8 bg-purple-600/90 rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-white text-xs ml-0.5">▶</span>
+                      </div>
                     </div>
                     
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -376,9 +428,25 @@ const Portfolio = () => {
                   key={video.id}
                   className="group relative overflow-hidden rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center relative">
-                    <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-sm">▶</span>
+                  <div className="aspect-video relative">
+                    {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
+                      <img 
+                        src={video.thumbnail_url} 
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center">
+                        <div className="text-3xl opacity-30">🎬</div>
+                      </div>
+                    )}
+                    
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors"></div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-8 h-8 bg-purple-600/90 rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-white text-xs ml-0.5">▶</span>
+                      </div>
                     </div>
                     
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
