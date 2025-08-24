@@ -15,6 +15,170 @@ const Portfolio = () => {
     fetchVideos();
   }, []);
 
+  // Dados de exemplo caso o banco esteja vazio
+  const mockVideos = [
+    {
+      id: 1,
+      title: "Trafego Pago",
+      author: "Fernando B Cerqueira",
+      category: "featured",
+      thumbnail_url: "/api/placeholder/600/400",
+      video_url: "#",
+      description: "Curso completo de tráfego pago",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 2,
+      title: "Marketing Digital",
+      author: "Fernando B Cerqueira", 
+      category: "featured",
+      thumbnail_url: "/api/placeholder/600/400",
+      video_url: "#",
+      description: "Estratégias de marketing digital",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 3,
+      title: "Dashboard Analytics",
+      author: "Fernando B Cerqueira",
+      category: "popular",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Sistema de analytics avançado",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 4,
+      title: "AI Assistant Bot",
+      author: "Fernando B Cerqueira",
+      category: "popular",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Chatbot inteligente",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 5,
+      title: "E-commerce Platform",
+      author: "Borges Midias",
+      category: "popular",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Plataforma de e-commerce completa",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 6,
+      title: "Mobile App Design",
+      author: "Fernando B Cerqueira",
+      category: "popular",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Design de aplicativo mobile",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 7,
+      title: "Cloud Infrastructure",
+      author: "Fernando B Cerqueira",
+      category: "popular",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Infraestrutura em nuvem",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 8,
+      title: "Blockchain Solution",
+      author: "Fernando B Cerqueira",
+      category: "popular",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Solução blockchain",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 9,
+      title: "React Performance",
+      author: "Marcelo Silva",
+      category: "recent",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Otimização de performance React",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 10,
+      title: "Node.js Best Practices",
+      author: "Marcelo Silva",
+      category: "recent",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Melhores práticas Node.js",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 11,
+      title: "CSS Grid Mastery",
+      author: "Fernando B Cerqueira",
+      category: "recent",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Dominando CSS Grid",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 12,
+      title: "TypeScript Deep Dive",
+      author: "Fernando B Cerqueira",
+      category: "recent",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "TypeScript avançado",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 13,
+      title: "Influencer Marketing",
+      author: "Influencer Pro",
+      category: "influencers",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Estratégias de influencer marketing",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 14,
+      title: "Content Creation",
+      author: "Creator Studio",
+      category: "influencers",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Criação de conteúdo profissional",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 15,
+      title: "Social Media Strategy",
+      author: "Social Expert",
+      category: "influencers",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Estratégia para redes sociais",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 16,
+      title: "Brand Partnership",
+      author: "Brand Manager",
+      category: "influencers",
+      thumbnail_url: "/api/placeholder/400/300",
+      video_url: "#",
+      description: "Parcerias de marca",
+      created_at: new Date().toISOString()
+    }
+  ];
+
   const fetchVideos = async () => {
     try {
       const { data, error } = await supabase
@@ -23,9 +187,13 @@ const Portfolio = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setVideos(data || []);
+      
+      // Se não há vídeos no banco, usa dados de exemplo
+      setVideos(data && data.length > 0 ? data : mockVideos);
     } catch (error) {
       console.error('Error fetching videos:', error);
+      // Em caso de erro, usa dados de exemplo
+      setVideos(mockVideos);
     } finally {
       setLoading(false);
     }
