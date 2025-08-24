@@ -18,7 +18,7 @@ const Header = () => {
             <a href="/about" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
               Sobre
             </a>
-            <a href="#solutions" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
+            <a href="/#solutions" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
               Soluções
             </a>
             <a href="/portfolio" className="font-poppins text-primary-foreground/80 hover:text-accent transition-colors">
