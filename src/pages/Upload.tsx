@@ -34,8 +34,14 @@ const Upload = () => {
     setUploading(true);
 
     try {
+      // Sanitize video file name to remove special characters
+      const sanitizedVideoName = videoFile.name
+        .replace(/[^a-zA-Z0-9.-]/g, '_')  // Replace special chars with underscore
+        .replace(/_+/g, '_')              // Replace multiple underscores with single
+        .replace(/^_|_$/g, '');           // Remove leading/trailing underscores
+      
       // Upload video file
-      const videoPath = `${Date.now()}-${videoFile.name}`;
+      const videoPath = `${Date.now()}-${sanitizedVideoName}`;
       const { error: videoError } = await supabase.storage
         .from('videos')
         .upload(videoPath, videoFile);
