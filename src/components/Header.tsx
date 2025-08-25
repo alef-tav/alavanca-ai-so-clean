@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/alavanca-logo.png";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   return (
@@ -10,7 +10,7 @@ const Header = () => {
             <img 
               src={logo} 
               alt="Alavanca AI Logo" 
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
           </div>
           
@@ -21,7 +21,7 @@ const Header = () => {
             <a href="/about" className="font-poppins text-foreground/80 hover:text-accent transition-colors font-medium">
               Sobre
             </a>
-            <a href="/solutions" className="font-poppins text-foreground/80 hover:text-accent transition-colors font-medium">
+            <a href="/#solutions" className="font-poppins text-foreground/80 hover:text-accent transition-colors font-medium">
               Soluções
             </a>
             <a href="/portfolio" className="font-poppins text-foreground/80 hover:text-accent transition-colors font-medium">
