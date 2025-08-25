@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.svg";
 
 const Header = () => {
   return (
@@ -6,9 +7,11 @@ const Header = () => {
       <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <span className="font-poppins font-bold text-2xl text-accent">
-              Alavanca AI
-            </span>
+            <img 
+              src={logo} 
+              alt="Alavanca AI Logo" 
+              className="h-8 w-auto object-contain"
+            />
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">

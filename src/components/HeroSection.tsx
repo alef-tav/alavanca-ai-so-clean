@@ -39,7 +39,7 @@ const HeroSection = () => {
           <Button size="lg" className="font-poppins font-medium text-lg px-8 py-4 bg-accent hover:bg-accent/90 text-primary border-0 min-w-[200px]">
             Ver Nosso Trabalho
           </Button>
-          <Button variant="outline" size="lg" className="font-poppins font-medium text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-primary transition-all min-w-[200px] shadow-lg">
+          <Button variant="outline" size="lg" className="font-poppins font-medium text-lg px-8 py-4 border-2 border-white/80 bg-white/10 text-white hover:bg-white hover:text-primary transition-all min-w-[200px] shadow-lg backdrop-blur-sm">
             Entre em Contato
           </Button>
         </div>
