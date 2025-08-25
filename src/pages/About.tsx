@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Progress } from "@/components/ui/progress";
+import officeTeam from "@/assets/office-team.jpg";
 
 const About = () => {
   const skills = [
@@ -28,8 +29,12 @@ const About = () => {
             
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative">
-                <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8 h-96 flex items-center justify-center">
-                  <div className="text-8xl opacity-30">🚀</div>
+                <div className="rounded-2xl overflow-hidden h-96">
+                  <img 
+                    src={officeTeam} 
+                    alt="Equipe trabalhando em escritório moderno" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               
