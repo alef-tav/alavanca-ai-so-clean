@@ -58,10 +58,10 @@ const Footer = () => {
             © 2024 Alavanca AI. Todos os direitos reservados.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="font-poppins text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors">
+            <a href="/privacy-policy" className="font-poppins text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors">
               Política de Privacidade
             </a>
-            <a href="#" className="font-poppins text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors">
+            <a href="/terms-of-use" className="font-poppins text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors">
               Termos de Uso
             </a>
           </div>
