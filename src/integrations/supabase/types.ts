@@ -24,6 +24,7 @@ export type Database = {
           thumbnail_url: string | null
           title: string
           updated_at: string
+          user_id: string | null
           video_url: string
         }
         Insert: {
@@ -35,6 +36,7 @@ export type Database = {
           thumbnail_url?: string | null
           title: string
           updated_at?: string
+          user_id?: string | null
           video_url: string
         }
         Update: {
@@ -46,6 +48,7 @@ export type Database = {
           thumbnail_url?: string | null
           title?: string
           updated_at?: string
+          user_id?: string | null
           video_url?: string
         }
         Relationships: []
