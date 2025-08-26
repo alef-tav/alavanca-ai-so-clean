@@ -259,6 +259,19 @@ const Portfolio = () => {
     <div className="min-h-screen bg-black font-poppins text-white">
       <Header />
       <main className="pt-16">
+        {/* Hero Header Section */}
+        <section className="py-16 px-6 bg-gradient-to-br from-primary/10 to-accent/5">
+          <div className="container mx-auto text-center">
+            <h1 className="font-poppins font-bold text-4xl md:text-6xl text-primary mb-6 leading-tight">
+              Vídeos de IA que Transformam sua Visão
+            </h1>
+            <p className="font-poppins text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed">
+              Explore nosso portfólio e veja como a Inteligência Artificial pode criar vídeos institucionais, 
+              de vendas e até mesmo influenciadores digitais para sua empresa.
+            </p>
+          </div>
+        </section>
+
         {/* Featured Section */}
         <section className="py-8 px-6">
           <div className="container mx-auto">
