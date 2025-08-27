@@ -5,11 +5,23 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background font-poppins">
       <Header />
-      <main className="py-20">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <h1 className="font-poppins font-bold text-4xl md:text-5xl text-primary mb-8">
-            Política de Privacidade
-          </h1>
+      
+      {/* Hero Header Section */}
+      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-accent/5">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <h1 className="font-poppins font-bold text-4xl md:text-5xl text-primary mb-6">
+              Política de Privacidade
+            </h1>
+            <p className="font-poppins text-xl text-foreground/80 max-w-3xl mx-auto">
+              Entenda como protegemos suas informações e respeitamos sua privacidade
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <main className="pb-20">
+        <div className="container mx-auto px-6 max-w-4xl py-16">
           
           <div className="prose prose-lg max-w-none">
             <div className="space-y-8 text-foreground/80">

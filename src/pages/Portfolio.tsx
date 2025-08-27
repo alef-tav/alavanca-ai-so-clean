@@ -569,60 +569,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Detailed showcase section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="relative">
-                <div className="bg-white rounded-2xl p-8 shadow-lg">
-                  <div className="flex space-x-4 mb-6">
-                    <div className="w-24 h-16 bg-black rounded-lg flex-shrink-0 flex items-center justify-center">
-                      <span className="text-white text-xs">📱</span>
-                    </div>
-                    <div className="w-32 h-20 bg-gray-200 rounded-lg flex-shrink-0 flex items-center justify-center">
-                      <span className="text-gray-600 text-sm">💻</span>
-                    </div>
-                    <div className="w-28 h-18 bg-black rounded-lg flex-shrink-0 flex items-center justify-center">
-                      <span className="text-white text-xs">📱</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <h2 className="font-poppins font-bold text-3xl text-primary">
-                  Vídeos Multi-dispositivo Responsivos
-                </h2>
-                <p className="font-poppins text-foreground/80 text-lg leading-relaxed">
-                  Criamos vídeos com inteligência artificial otimizados para todos os dispositivos, 
-                  garantindo a melhor experiência visual em smartphones, tablets e desktops.
-                </p>
-                
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {["IA Generativa", "Vídeo 4K", "Múltiplos Formatos", "Responsivo", "Automação"].map((tech) => (
-                    <span 
-                      key={tech}
-                      className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-poppins font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <p className="font-poppins text-foreground/80 leading-relaxed">
-                  Nossos projetos envolvem a criação completa de conteúdo audiovisual utilizando 
-                  as mais avançadas tecnologias de IA. O principal desafio é manter a qualidade 
-                  cinematográfica enquanto automatizamos o processo criativo, resultando em 
-                  vídeos profissionais e personalizados.
-                </p>
-                
-                <Button size="lg" className="font-poppins font-medium">
-                  Ver Demonstração
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       
       <VideoModal 
