@@ -114,21 +114,13 @@ const Solutions = () => {
               podemos impulsionar seu crescimento.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 onClick={() => navigate('/contact')}
                 size="lg" 
                 className="font-poppins font-semibold text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 Solicitar Consulta Gratuita
-              </Button>
-              <Button 
-                onClick={() => navigate('/portfolio')}
-                variant="outline"
-                size="lg" 
-                className="font-poppins font-semibold text-lg px-8 py-6 border-2 border-primary text-primary hover:bg-primary/5 rounded-xl transition-all duration-300"
-              >
-                Ver Nosso Portfólio
               </Button>
             </div>
           </div>
