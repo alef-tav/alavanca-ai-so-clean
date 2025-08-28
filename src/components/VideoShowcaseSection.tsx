@@ -1,13 +1,77 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const VideoShowcaseSection = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [showcaseVideo, setShowcaseVideo] = useState(null);
+
+  useEffect(() => {
+    fetchShowcaseVideo();
+  }, []);
+
+  const fetchShowcaseVideo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('videos')
+        .select('*')
+        .eq('category', 'showcase')
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      if (error) throw error;
+      
+      if (data && data.length > 0) {
+        setShowcaseVideo(data[0]);
+      }
+    } catch (error) {
+      console.error('Error fetching showcase video:', error);
+    }
+  };
 
   const handleDemoClick = () => {
-    navigate('/contact');
+    navigate('/portfolio');
+  };
+
+  const handlePlayVideo = () => {
+    if (showcaseVideo) {
+      // Lógica para reproduzir o vídeo pode ser implementada aqui
+      console.log('Playing video:', showcaseVideo);
+    }
+  };
+
+  const handleDeleteVideo = async (event) => {
+    event.stopPropagation();
+    
+    if (!showcaseVideo) return;
+    
+    try {
+      const { error } = await supabase
+        .from('videos')
+        .delete()
+        .eq('id', showcaseVideo.id);
+
+      if (error) throw error;
+
+      setShowcaseVideo(null);
+      
+      toast({
+        title: "Sucesso!",
+        description: "Vídeo removido com sucesso!",
+      });
+    } catch (error) {
+      console.error('Error deleting video:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao remover vídeo. Tente novamente.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -18,21 +82,69 @@ const VideoShowcaseSection = () => {
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Video Side */}
               <div className="relative bg-muted/30 flex items-center justify-center min-h-[400px]">
-                <div className="relative group cursor-pointer">
-                  {/* Video Placeholder with Play Button */}
-                  <div className="w-80 h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center border-2 border-primary/20">
-                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      <Play className="w-6 h-6 text-primary-foreground ml-1" />
-                    </div>
-                  </div>
-                  {/* Video Title Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-black/60 backdrop-blur-sm rounded-lg p-3">
-                      <p className="text-white font-poppins font-medium text-sm">
-                        História do Seu Zé - IA vs Realidade
-                      </p>
-                    </div>
-                  </div>
+                <div className="relative group cursor-pointer" onClick={handlePlayVideo}>
+                  {/* Botão de remoção transparente - só admins sabem que está aqui */}
+                  {showcaseVideo && (
+                    <button
+                      onClick={handleDeleteVideo}
+                      className="absolute top-2 right-2 z-10 w-6 h-6 bg-transparent hover:bg-transparent rounded-full flex items-center justify-center opacity-0 transition-opacity duration-200"
+                      title="Remover vídeo"
+                    >
+                      <X className="w-3 h-3 text-transparent" />
+                    </button>
+                  )}
+                  
+                  {showcaseVideo ? (
+                    <>
+                      {/* Video Thumbnail */}
+                      <div className="w-80 h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg overflow-hidden border-2 border-primary/20">
+                        {showcaseVideo.thumbnail_url ? (
+                          <img 
+                            src={showcaseVideo.thumbnail_url} 
+                            alt={showcaseVideo.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                            <div className="text-4xl opacity-30">🎬</div>
+                          </div>
+                        )}
+                        
+                        {/* Play Button Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <Play className="w-6 h-6 text-primary-foreground ml-1" />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Video Title Overlay */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-black/60 backdrop-blur-sm rounded-lg p-3">
+                          <p className="text-white font-poppins font-medium text-sm">
+                            {showcaseVideo.title}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Default Video Placeholder */}
+                      <div className="w-80 h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center border-2 border-primary/20">
+                        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                          <Play className="w-6 h-6 text-primary-foreground ml-1" />
+                        </div>
+                      </div>
+                      {/* Default Video Title Overlay */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-black/60 backdrop-blur-sm rounded-lg p-3">
+                          <p className="text-white font-poppins font-medium text-sm">
+                            História do Seu Zé - IA vs Realidade
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 

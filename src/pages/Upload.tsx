@@ -221,6 +221,7 @@ const Upload = () => {
                   <option value="popular">Populares</option>
                   <option value="recent">Recentes</option>
                   <option value="influencers">Influencers</option>
+                  <option value="showcase">Showcase Home</option>
                 </select>
               </div>
 
