@@ -5,13 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import VideoModal from "./VideoModal";
 
 const VideoShowcaseSection = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [showcaseVideo, setShowcaseVideo] = useState(null);
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     fetchShowcaseVideo();
@@ -42,7 +40,8 @@ const VideoShowcaseSection = () => {
 
   const handlePlayVideo = () => {
     if (showcaseVideo && showcaseVideo.url) {
-      setIsVideoModalOpen(true);
+      // Open video in new tab
+      window.open(showcaseVideo.url, '_blank');
     } else {
       // Navigate to portfolio to see more videos
       navigate('/portfolio');
@@ -179,12 +178,6 @@ const VideoShowcaseSection = () => {
           </Card>
         </div>
       </div>
-      
-      <VideoModal
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        video={showcaseVideo}
-      />
     </section>
   );
 };

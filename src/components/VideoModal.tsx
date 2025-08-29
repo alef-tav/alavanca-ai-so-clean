@@ -8,9 +8,8 @@ interface VideoModalProps {
   video: {
     id: string | number;
     title: string;
-    author?: string;
-    url: string;
-    video_url?: string;
+    author: string;
+    video_url: string;
     thumbnail_url?: string;
     description?: string;
   } | null;
@@ -18,8 +17,6 @@ interface VideoModalProps {
 
 const VideoModal = ({ isOpen, onClose, video }: VideoModalProps) => {
   if (!video) return null;
-
-  const videoUrl = video.url || video.video_url;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -35,16 +32,16 @@ const VideoModal = ({ isOpen, onClose, video }: VideoModalProps) => {
           </Button>
           
           <div className="aspect-video w-full">
-            {videoUrl && videoUrl !== "#" ? (
+            {video.video_url && video.video_url !== "#" ? (
               <video
                 controls
                 autoPlay
                 className="w-full h-full rounded-lg"
                 poster={video.thumbnail_url}
               >
-                <source src={videoUrl} type="video/mp4" />
-                <source src={videoUrl} type="video/webm" />
-                <source src={videoUrl} type="video/ogg" />
+                <source src={video.video_url} type="video/mp4" />
+                <source src={video.video_url} type="video/webm" />
+                <source src={video.video_url} type="video/ogg" />
                 Seu navegador não suporta o elemento de vídeo.
               </video>
             ) : (
@@ -60,9 +57,7 @@ const VideoModal = ({ isOpen, onClose, video }: VideoModalProps) => {
           
           <div className="p-6 bg-black text-white">
             <h2 className="font-poppins font-bold text-2xl mb-2">{video.title}</h2>
-            {video.author && (
-              <p className="font-poppins text-gray-300 mb-4">por {video.author}</p>
-            )}
+            <p className="font-poppins text-gray-300 mb-4">por {video.author}</p>
             {video.description && (
               <p className="font-poppins text-gray-200 text-sm leading-relaxed">
                 {video.description}
