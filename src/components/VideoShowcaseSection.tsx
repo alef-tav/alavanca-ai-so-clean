@@ -39,9 +39,12 @@ const VideoShowcaseSection = () => {
   };
 
   const handlePlayVideo = () => {
-    if (showcaseVideo) {
-      // Lógica para reproduzir o vídeo pode ser implementada aqui
-      console.log('Playing video:', showcaseVideo);
+    if (showcaseVideo && showcaseVideo.url) {
+      // Open video in new tab
+      window.open(showcaseVideo.url, '_blank');
+    } else {
+      // Navigate to portfolio to see more videos
+      navigate('/portfolio');
     }
   };
 
@@ -79,10 +82,10 @@ const VideoShowcaseSection = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <Card className="overflow-hidden border-border/50 shadow-2xl">
-            <div className="grid lg:grid-cols-2 gap-0">
-              {/* Video Side */}
-              <div className="relative bg-muted/30 flex items-center justify-center min-h-[400px]">
-                <div className="relative group cursor-pointer" onClick={handlePlayVideo}>
+            <div className="grid lg:grid-cols-5 gap-0">
+              {/* Video Side - Takes up 3 columns */}
+              <div className="lg:col-span-3 relative bg-muted/30 flex items-center justify-center min-h-[500px] p-8">
+                <div className="relative group cursor-pointer w-full max-w-lg" onClick={handlePlayVideo}>
                   {/* Botão de remoção transparente - só admins sabem que está aqui */}
                   {showcaseVideo && (
                     <button
@@ -97,7 +100,7 @@ const VideoShowcaseSection = () => {
                   {showcaseVideo ? (
                     <>
                       {/* Video Thumbnail */}
-                      <div className="w-80 h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg overflow-hidden border-2 border-primary/20">
+                      <div className="w-full aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl overflow-hidden border-2 border-primary/20 shadow-xl">
                         {showcaseVideo.thumbnail_url ? (
                           <img 
                             src={showcaseVideo.thumbnail_url} 
@@ -106,14 +109,14 @@ const VideoShowcaseSection = () => {
                           />
                         ) : (
                           <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                            <div className="text-4xl opacity-30">🎬</div>
+                            <div className="text-6xl opacity-30">🎬</div>
                           </div>
                         )}
                         
                         {/* Play Button Overlay */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                            <Play className="w-6 h-6 text-primary-foreground ml-1" />
+                          <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                            <Play className="w-8 h-8 text-primary-foreground ml-1" />
                           </div>
                         </div>
                       </div>
@@ -130,16 +133,16 @@ const VideoShowcaseSection = () => {
                   ) : (
                     <>
                       {/* Default Video Placeholder */}
-                      <div className="w-80 h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center border-2 border-primary/20">
-                        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                          <Play className="w-6 h-6 text-primary-foreground ml-1" />
+                      <div className="w-full aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center border-2 border-primary/20 shadow-xl">
+                        <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                          <Play className="w-8 h-8 text-primary-foreground ml-1" />
                         </div>
                       </div>
                       {/* Default Video Title Overlay */}
                       <div className="absolute bottom-4 left-4 right-4">
-                        <div className="bg-black/60 backdrop-blur-sm rounded-lg p-3">
-                          <p className="text-white font-poppins font-medium text-sm">
-                            História do Seu Zé - IA vs Realidade
+                        <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4">
+                          <p className="text-white font-poppins font-medium text-base">
+                            Vídeo Demonstrativo - Móveis de Escritório
                           </p>
                         </div>
                       </div>
@@ -148,17 +151,18 @@ const VideoShowcaseSection = () => {
                 </div>
               </div>
 
-              {/* Content Side */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <h2 className="font-poppins font-bold text-3xl lg:text-4xl text-primary mb-6">
-                  Não seja como o Seu Zé!
+              {/* Content Side - Takes up 2 columns */}
+              <div className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-background">
+                <h2 className="font-poppins font-bold text-3xl lg:text-4xl text-primary mb-6 leading-tight">
+                  Dê vida à sua marca com a Alavanca AI
                 </h2>
                 
                 <p className="font-poppins text-lg text-foreground/80 leading-relaxed mb-8">
-                  Seu Zé precisou casar com oito mulheres para descobrir que, na verdade, 
-                  estava se relacionando com uma inteligência artificial. Com a gente, você 
-                  não perde tempo! Produza vídeos incríveis para sua empresa com a nossa IA 
-                  e impressione de verdade.
+                  Cansado de comerciais genéricos? Mostre seus móveis de escritório de uma forma que realmente encanta e converte. Com a inteligência artificial, criamos vídeos dinâmicos, que destacam cada detalhe e design, conectando-se diretamente com o seu público-alvo. Deixe a IA contar a história da sua marca de forma única e impactante, transformando simples produtos em grandes desejos.
+                </p>
+
+                <p className="font-poppins text-xl font-semibold text-primary mb-8">
+                  Pronto para transformar sua comunicação?
                 </p>
 
                 <Button 
