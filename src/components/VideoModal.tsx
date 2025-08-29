@@ -33,17 +33,35 @@ const VideoModal = ({ isOpen, onClose, video }: VideoModalProps) => {
           
           <div className="aspect-video w-full">
             {video.video_url && video.video_url !== "#" ? (
-              <video
-                controls
-                autoPlay
-                className="w-full h-full rounded-lg"
-                poster={video.thumbnail_url}
-              >
-                <source src={video.video_url} type="video/mp4" />
-                <source src={video.video_url} type="video/webm" />
-                <source src={video.video_url} type="video/ogg" />
-                Seu navegador não suporta o elemento de vídeo.
-              </video>
+              video.video_url.includes('vimeo.com') ? (
+                <iframe
+                  src={video.video_url}
+                  className="w-full h-full rounded-lg"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : video.video_url.includes('youtube.com') || video.video_url.includes('youtu.be') ? (
+                <iframe
+                  src={video.video_url}
+                  className="w-full h-full rounded-lg"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <video
+                  controls
+                  autoPlay
+                  className="w-full h-full rounded-lg"
+                  poster={video.thumbnail_url}
+                >
+                  <source src={video.video_url} type="video/mp4" />
+                  <source src={video.video_url} type="video/webm" />
+                  <source src={video.video_url} type="video/ogg" />
+                  Seu navegador não suporta o elemento de vídeo.
+                </video>
+              )
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center rounded-lg">
                 <div className="text-center text-white">

@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import VideoModal from "@/components/VideoModal";
 
 const VideoShowcaseSection = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [showcaseVideo, setShowcaseVideo] = useState(null);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     fetchShowcaseVideo();
@@ -39,13 +41,7 @@ const VideoShowcaseSection = () => {
   };
 
   const handlePlayVideo = () => {
-    if (showcaseVideo && showcaseVideo.url) {
-      // Open video in new tab
-      window.open(showcaseVideo.url, '_blank');
-    } else {
-      // Navigate to portfolio to see more videos
-      navigate('/portfolio');
-    }
+    setIsVideoModalOpen(true);
   };
 
   const handleDeleteVideo = async (event) => {
@@ -178,6 +174,27 @@ const VideoShowcaseSection = () => {
           </Card>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        video={showcaseVideo ? {
+          id: showcaseVideo.id,
+          title: showcaseVideo.title,
+          author: 'Alavanca AI',
+          video_url: showcaseVideo.url || 'https://player.vimeo.com/video/1112165351?autoplay=1',
+          thumbnail_url: showcaseVideo.thumbnail_url,
+          description: showcaseVideo.description || 'Demonstração da criação de vídeos com IA para móveis de escritório'
+        } : {
+          id: 'demo',
+          title: 'Vídeo Demonstrativo - Móveis de Escritório',
+          author: 'Alavanca AI',
+          video_url: 'https://player.vimeo.com/video/1112165351?autoplay=1',
+          thumbnail_url: '/lovable-uploads/9a2654ff-36bc-47ed-a328-82782ae7fb33.png',
+          description: 'Demonstração da criação de vídeos com IA para móveis de escritório'
+        }}
+      />
     </section>
   );
 };
