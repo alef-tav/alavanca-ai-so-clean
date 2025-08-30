@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import dashboardImage from "@/assets/dashboard-analytics.png";
 import aiSalesImage from "@/assets/ai-sales-assistant.jpg";
+import aiTrafficImage from "@/assets/ai-traffic-management.jpg";
 
 const PortfolioSection = () => {
   const portfolioItems = [
@@ -18,10 +19,10 @@ const PortfolioSection = () => {
       category: "IA de Vendas"
     },
     {
-      title: "Automação Industrial",
-      description: "Sistema de visão computacional para controle de qualidade automatizado",
-      image: "/api/placeholder/400/300", 
-      category: "Automação"
+      title: "Gestão de Tráfego com IA",
+      description: "Pare de desperdiçar dinheiro com anúncios. Nossa IA otimiza suas campanhas de Facebook e Google, ajustando orçamentos e público em tempo real para garantir o maior retorno sobre seu investimento.",
+      image: aiTrafficImage,
+      category: "Marketing Digital"
     }
   ];
 
@@ -55,7 +56,11 @@ const PortfolioSection = () => {
                      className="w-full h-full object-cover"
                    />
                  ) : (
-                   <div className="text-6xl opacity-20">🏭</div>
+                   <img 
+                     src={item.image} 
+                     alt={item.title}
+                     className="w-full h-full object-cover"
+                   />
                  )}
               </div>
               <div className="p-6">
