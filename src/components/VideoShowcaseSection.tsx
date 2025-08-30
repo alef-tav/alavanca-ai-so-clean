@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -10,6 +11,7 @@ const VideoShowcaseSection = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [showcaseVideo, setShowcaseVideo] = useState(null);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     fetchShowcaseVideo();
@@ -39,13 +41,7 @@ const VideoShowcaseSection = () => {
   };
 
   const handlePlayVideo = () => {
-    if (showcaseVideo && showcaseVideo.url) {
-      // Open video in new tab
-      window.open(showcaseVideo.url, '_blank');
-    } else {
-      // Navigate to portfolio to see more videos
-      navigate('/portfolio');
-    }
+    setIsVideoModalOpen(true);
   };
 
   const handleDeleteVideo = async (event) => {
@@ -82,10 +78,10 @@ const VideoShowcaseSection = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <Card className="overflow-hidden border-border/50 shadow-2xl">
-            <div className="grid lg:grid-cols-5 gap-0">
-              {/* Video Side - Takes up 3 columns */}
-              <div className="lg:col-span-3 relative bg-muted/30 flex items-center justify-center min-h-[500px] p-8">
-                <div className="relative group cursor-pointer w-full max-w-lg" onClick={handlePlayVideo}>
+            <div className="grid lg:grid-cols-3 gap-0">
+              {/* Video Side - Takes up 2 columns */}
+              <div className="lg:col-span-2 relative bg-muted/30 flex items-center justify-center min-h-[450px] p-6">
+                <div className="relative group cursor-pointer w-full max-w-2xl" onClick={handlePlayVideo}>
                   {/* Botão de remoção transparente - só admins sabem que está aqui */}
                   {showcaseVideo && (
                     <button
@@ -113,12 +109,12 @@ const VideoShowcaseSection = () => {
                           </div>
                         )}
                         
-                        {/* Play Button Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                            <Play className="w-8 h-8 text-primary-foreground ml-1" />
-                          </div>
-                        </div>
+                         {/* Play Button Overlay */}
+                         <div className="absolute inset-0 flex items-center justify-center">
+                           <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                             <Play className="w-10 h-10 text-primary-foreground ml-1" />
+                           </div>
+                         </div>
                       </div>
                       
                       {/* Video Title Overlay */}
@@ -133,11 +129,11 @@ const VideoShowcaseSection = () => {
                   ) : (
                     <>
                       {/* Default Video Placeholder */}
-                      <div className="w-full aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center border-2 border-primary/20 shadow-xl">
-                        <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                          <Play className="w-8 h-8 text-primary-foreground ml-1" />
-                        </div>
-                      </div>
+                       <div className="w-full aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center border-2 border-primary/20 shadow-xl">
+                         <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                           <Play className="w-10 h-10 text-primary-foreground ml-1" />
+                         </div>
+                       </div>
                       {/* Default Video Title Overlay */}
                       <div className="absolute bottom-4 left-4 right-4">
                         <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4">
@@ -151,33 +147,85 @@ const VideoShowcaseSection = () => {
                 </div>
               </div>
 
-              {/* Content Side - Takes up 2 columns */}
-              <div className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-background">
-                <h2 className="font-poppins font-bold text-3xl lg:text-4xl text-primary mb-6 leading-tight">
+              {/* Content Side - Takes up 1 column */}
+              <div className="lg:col-span-1 p-6 lg:p-8 flex flex-col justify-center bg-background">
+                <h2 className="font-poppins font-bold text-2xl lg:text-3xl text-primary mb-4 leading-tight">
                   Dê vida à sua marca com a Alavanca AI
                 </h2>
                 
-                <p className="font-poppins text-lg text-foreground/80 leading-relaxed mb-8">
+                <p className="font-poppins text-base text-foreground/80 leading-relaxed mb-6">
                   Cansado de comerciais genéricos? Mostre seus móveis de escritório de uma forma que realmente encanta e converte. Com a inteligência artificial, criamos vídeos dinâmicos, que destacam cada detalhe e design, conectando-se diretamente com o seu público-alvo. Deixe a IA contar a história da sua marca de forma única e impactante, transformando simples produtos em grandes desejos.
                 </p>
 
-                <p className="font-poppins text-xl font-semibold text-primary mb-8">
+                <p className="font-poppins text-lg font-semibold text-primary mb-6">
                   Pronto para transformar sua comunicação?
                 </p>
 
                 <Button 
                   onClick={handleDemoClick}
                   size="lg" 
-                  className="font-poppins font-semibold text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group w-fit"
+                  className="font-poppins font-semibold text-base px-6 py-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group w-fit"
                 >
                   Ver Demonstração
-                  <Play className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
+                  <Play className="w-4 h-4 ml-2 group-hover:scale-110 transition-transform" />
                 </Button>
               </div>
             </div>
           </Card>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
+        <DialogContent className="max-w-4xl w-full p-0 bg-black border-none">
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsVideoModalOpen(false)}
+              className="absolute top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+            
+            <div className="aspect-video w-full">
+              {showcaseVideo && showcaseVideo.url && showcaseVideo.url !== "#" ? (
+                <video
+                  controls
+                  autoPlay
+                  className="w-full h-full rounded-lg"
+                  poster={showcaseVideo.thumbnail_url}
+                >
+                  <source src={showcaseVideo.url} type="video/mp4" />
+                  <source src={showcaseVideo.url} type="video/webm" />
+                  <source src={showcaseVideo.url} type="video/ogg" />
+                  Seu navegador não suporta o elemento de vídeo.
+                </video>
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center rounded-lg">
+                  <div className="text-center text-white">
+                    <div className="text-6xl mb-4">🎬</div>
+                    <p className="text-xl font-poppins">Vídeo em breve</p>
+                    <p className="text-sm text-gray-300">Este é um vídeo de exemplo</p>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <div className="p-6 bg-black text-white">
+              <h2 className="font-poppins font-bold text-2xl mb-2">
+                {showcaseVideo ? showcaseVideo.title : "Vídeo Demonstrativo - Móveis de Escritório"}
+              </h2>
+              <p className="font-poppins text-gray-300 mb-4">por Alavanca AI</p>
+              {showcaseVideo && showcaseVideo.description && (
+                <p className="font-poppins text-gray-200 text-sm leading-relaxed">
+                  {showcaseVideo.description}
+                </p>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
