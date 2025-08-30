@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import dashboardImage from "@/assets/dashboard-analytics.png";
+import aiSalesImage from "@/assets/ai-sales-assistant.jpg";
 
 const PortfolioSection = () => {
   const portfolioItems = [
@@ -11,10 +12,10 @@ const PortfolioSection = () => {
       category: "Business Intelligence"
     },
     {
-      title: "Chatbot AI Assistant", 
-      description: "Assistente virtual inteligente com processamento de linguagem natural avançado",
-      image: "/api/placeholder/400/300",
-      category: "Chatbots"
+      title: "IA de Atendimento e Vendas", 
+      description: "Um vendedor que nunca dorme. Nossa IA atende, qualifica leads e fecha vendas de forma fluida, 24 horas por dia. Garante que sua empresa nunca perca uma oportunidade de negócio.",
+      image: aiSalesImage,
+      category: "IA de Vendas"
     },
     {
       title: "Automação Industrial",
@@ -47,9 +48,15 @@ const PortfolioSection = () => {
                     alt={item.title}
                     className="w-full h-full object-cover"
                   />
-                ) : (
-                  <div className="text-6xl opacity-20">{index === 1 ? "🤖" : "🏭"}</div>
-                )}
+                 ) : index === 1 ? (
+                   <img 
+                     src={item.image} 
+                     alt={item.title}
+                     className="w-full h-full object-cover"
+                   />
+                 ) : (
+                   <div className="text-6xl opacity-20">🏭</div>
+                 )}
               </div>
               <div className="p-6">
                 <div className="text-sm font-poppins font-medium text-accent mb-2">
