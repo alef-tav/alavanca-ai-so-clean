@@ -186,16 +186,16 @@ const VideoShowcaseSection = () => {
             </button>
             
             <div className="aspect-video w-full">
-              {showcaseVideo && showcaseVideo.url && showcaseVideo.url !== "#" ? (
+              {showcaseVideo && showcaseVideo.video_url && showcaseVideo.video_url !== "#" ? (
                 <video
                   controls
                   autoPlay
                   className="w-full h-full"
                   poster={showcaseVideo.thumbnail_url}
                 >
-                  <source src={showcaseVideo.url} type="video/mp4" />
-                  <source src={showcaseVideo.url} type="video/webm" />
-                  <source src={showcaseVideo.url} type="video/ogg" />
+                  <source src={showcaseVideo.video_url} type="video/mp4" />
+                  <source src={showcaseVideo.video_url} type="video/webm" />
+                  <source src={showcaseVideo.video_url} type="video/ogg" />
                   Seu navegador não suporta o elemento de vídeo.
                 </video>
               ) : (
