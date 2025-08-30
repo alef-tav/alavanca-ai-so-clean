@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -176,24 +175,22 @@ const VideoShowcaseSection = () => {
       </div>
 
       {/* Video Modal */}
-      <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
-        <DialogContent className="max-w-4xl w-full p-0 bg-black border-none">
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
+      {isVideoModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="relative max-w-4xl w-full bg-black rounded-lg overflow-hidden">
+            <button
               onClick={() => setIsVideoModalOpen(false)}
-              className="absolute top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
             >
               <X className="w-6 h-6" />
-            </Button>
+            </button>
             
             <div className="aspect-video w-full">
               {showcaseVideo && showcaseVideo.url && showcaseVideo.url !== "#" ? (
                 <video
                   controls
                   autoPlay
-                  className="w-full h-full rounded-lg"
+                  className="w-full h-full"
                   poster={showcaseVideo.thumbnail_url}
                 >
                   <source src={showcaseVideo.url} type="video/mp4" />
@@ -202,7 +199,7 @@ const VideoShowcaseSection = () => {
                   Seu navegador não suporta o elemento de vídeo.
                 </video>
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center rounded-lg">
+                <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center">
                   <div className="text-center text-white">
                     <div className="text-6xl mb-4">🎬</div>
                     <p className="text-xl font-poppins">Vídeo em breve</p>
@@ -224,8 +221,8 @@ const VideoShowcaseSection = () => {
               )}
             </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        </div>
+      )}
     </section>
   );
 };
