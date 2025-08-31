@@ -34,10 +34,10 @@ const Footer = () => {
           <div>
             <h3 className="font-poppins font-semibold text-lg mb-4">Soluções</h3>
             <ul className="space-y-2 font-poppins text-primary-foreground/80">
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Chatbots Inteligentes</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Análise Preditiva</a></li>
+              <li><a href="/dashboards-personalizados" className="hover:text-primary-foreground transition-colors">Dashboards Personalizados</a></li>
+              <li><a href="/ia-atendimento-vendas" className="hover:text-primary-foreground transition-colors">IA de Atendimento e Vendas</a></li>
+              <li><a href="/gestao-trafego-ia" className="hover:text-primary-foreground transition-colors">Gestão de Tráfego com IA</a></li>
               <li><a href="#" className="hover:text-primary-foreground transition-colors">Automação de Processos</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Visão Computacional</a></li>
             </ul>
           </div>
           

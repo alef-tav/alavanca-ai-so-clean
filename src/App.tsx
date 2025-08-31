@@ -12,6 +12,9 @@ import Upload from "./pages/Upload";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
+import DashboardsPersonalizados from "./pages/DashboardsPersonalizados";
+import IAAtendimentoVendas from "./pages/IAAtendimentoVendas";
+import GestaoTrafegoIA from "./pages/GestaoTrafegoIA";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/dashboards-personalizados" element={<DashboardsPersonalizados />} />
+          <Route path="/ia-atendimento-vendas" element={<IAAtendimentoVendas />} />
+          <Route path="/gestao-trafego-ia" element={<GestaoTrafegoIA />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

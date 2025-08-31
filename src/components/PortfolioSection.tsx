@@ -1,28 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import dashboardImage from "@/assets/dashboard-analytics.png";
 import aiSalesImage from "@/assets/ai-sales-assistant.jpg";
 import aiTrafficImage from "@/assets/ai-traffic-management.jpg";
 
 const PortfolioSection = () => {
+  const navigate = useNavigate();
+  
   const portfolioItems = [
     {
       title: "Dashboards Personalizados",
       description: "Transforme dados em insights e gerencie vendas, clientes e suporte em painéis feitos sob medida para o seu negócio",
       image: dashboardImage,
-      category: "Business Intelligence"
+      category: "Business Intelligence",
+      path: "/dashboards-personalizados"
     },
     {
       title: "IA de Atendimento e Vendas", 
       description: "Um vendedor que nunca dorme. Nossa IA atende, qualifica leads e fecha vendas de forma fluida, 24 horas por dia. Garante que sua empresa nunca perca uma oportunidade de negócio.",
       image: aiSalesImage,
-      category: "IA de Vendas"
+      category: "IA de Vendas",
+      path: "/ia-atendimento-vendas"
     },
     {
       title: "Gestão de Tráfego com IA",
       description: "Pare de desperdiçar dinheiro com anúncios. Nossa IA otimiza suas campanhas de Facebook e Google, ajustando orçamentos e público em tempo real para garantir o maior retorno sobre seu investimento.",
       image: aiTrafficImage,
-      category: "Marketing Digital"
+      category: "Marketing Digital",
+      path: "/gestao-trafego-ia"
     }
   ];
 
@@ -70,9 +76,17 @@ const PortfolioSection = () => {
                 <h3 className="font-poppins font-semibold text-xl text-primary mb-3">
                   {item.title}
                 </h3>
-                <p className="font-poppins text-foreground/80 text-sm leading-relaxed">
+                <p className="font-poppins text-foreground/80 text-sm leading-relaxed mb-4">
                   {item.description}
                 </p>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="font-poppins text-xs"
+                  onClick={() => navigate(item.path)}
+                >
+                  Ler Sobre
+                </Button>
               </div>
             </Card>
           ))}
