@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { SplineSceneSection } from "@/components/SplineSceneSection";
 
 const Solutions = () => {
   const navigate = useNavigate();
@@ -63,6 +64,13 @@ const Solutions = () => {
               com nossa expertise em inteligência artificial.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Interactive 3D Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-6">
+          <SplineSceneSection />
         </div>
       </section>
 
