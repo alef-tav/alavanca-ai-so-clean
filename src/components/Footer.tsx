@@ -1,3 +1,5 @@
+import logo from "@/assets/alavanca-ai-logo.png";
+
 const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground py-16">
@@ -6,12 +8,11 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary-foreground rounded-lg flex items-center justify-center">
-                <span className="text-primary font-bold text-sm">AI</span>
-              </div>
-              <span className="font-poppins font-semibold text-xl">
-                Alavanca AI
-              </span>
+              <img 
+                src={logo} 
+                alt="Alavanca AI Logo" 
+                className="h-8 w-auto object-contain"
+              />
             </div>
             <p className="font-poppins text-primary-foreground/80 max-w-md leading-relaxed mb-6">
               Transformando negócios através da inteligência artificial. 
