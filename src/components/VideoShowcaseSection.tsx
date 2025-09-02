@@ -152,8 +152,16 @@ const VideoShowcaseSection = () => {
                   Dê vida à sua marca com a Alavanca AI
                 </h2>
                 
+                <p className="font-poppins text-base text-foreground/80 leading-relaxed mb-4">
+                  Cansado de comerciais genéricos? Mostre seus móveis de escritório de uma forma que realmente encanta e converte.
+                </p>
+                
+                <p className="font-poppins text-base text-foreground/80 leading-relaxed mb-4">
+                  Com a inteligência artificial, criamos vídeos dinâmicos, que destacam cada detalhe e design, conectando-se diretamente com o seu público-alvo.
+                </p>
+                
                 <p className="font-poppins text-base text-foreground/80 leading-relaxed mb-6">
-                  Cansado de comerciais genéricos? Mostre seus móveis de escritório de uma forma que realmente encanta e converte. Com a inteligência artificial, criamos vídeos dinâmicos, que destacam cada detalhe e design, conectando-se diretamente com o seu público-alvo. Deixe a IA contar a história da sua marca de forma única e impactante, transformando simples produtos em grandes desejos.
+                  Deixe a IA contar a história da sua marca de forma única e impactante, transformando simples produtos em grandes desejos.
                 </p>
 
                 <p className="font-poppins text-lg font-semibold text-primary mb-6">
