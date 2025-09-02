@@ -44,6 +44,24 @@ const Solutions = () => {
       title: "Suporte Jurídico com IA",
       description: "Agilize seu trabalho legal. Uma IA especializada analisa documentos, identifica cláusulas importantes, pesquisa jurisprudências e gera relatórios com precisão e rapidez.",
       features: ["Revisão e análise de contratos", "Pesquisa de jurisprudências e legislação", "Geração automática de relatórios", "Otimização de tempo para advogados"]
+    },
+    {
+      icon: "📊",
+      title: "Dashboards e CRM Personalizados",
+      description: "Tenha o controle total do seu negócio com painéis e CRM feitos sob medida. Integre dados de vendas, clientes, suporte e operações em uma única plataforma intuitiva, desenhada para suas necessidades.",
+      features: ["Visão 360º do cliente e vendas", "Relatórios gerenciais personalizados", "Monitoramento de KPIs em tempo real", "Integração flexível com sistemas existentes"]
+    },
+    {
+      icon: "🎯",
+      title: "Gestão de Tráfego Otimizada por IA",
+      description: "Maximize o retorno de seus investimentos em anúncios digitais. Nossa IA gerencia suas campanhas no Facebook Ads e Google Ads, ajustando estratégias e orçamentos em tempo real para obter os melhores resultados.",
+      features: ["Otimização automática de campanhas", "Análise de desempenho em tempo real", "Redução de custos por clique (CPC)", "Aumento do ROAS (Retorno sobre o Investimento em Anúncios)"]
+    },
+    {
+      icon: "🛒",
+      title: "IA para E-commerce Shopify",
+      description: "Revolucione sua loja virtual com inteligência artificial. Nossa IA se integra à Shopify para otimizar operações, personalizar a experiência de compra e impulsionar suas vendas de forma eficiente.",
+      features: ["Gestão inteligente de estoque", "Sugestão de produtos personalizada", "Automação de descrições de produtos", "Otimização da experiência do usuário"]
     }
   ];
 
