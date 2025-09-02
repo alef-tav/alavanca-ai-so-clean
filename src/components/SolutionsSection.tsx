@@ -3,34 +3,34 @@ import { Card } from "@/components/ui/card";
 const SolutionsSection = () => {
   const solutions = [
     {
+      icon: "🎙️",
+      title: "IA de Voz Ultra-Realista",
+      description: "Transforme a comunicação com clientes. Nossa IA interage por voz de forma natural e indistinguível de um humano, ideal para prospecção, agendamento ou suporte."
+    },
+    {
       icon: "🤖",
-      title: "Chatbots Inteligentes",
-      description: "Automatize o atendimento ao cliente com chatbots que compreendem contexto e oferecem respostas personalizadas 24/7."
+      title: "Assistente de Suporte Inteligente",
+      description: "Otimize seu atendimento ao cliente. Nossa IA atua como um assistente virtual, respondendo a perguntas frequentes e direcionando casos complexos para sua equipe humana."
     },
     {
-      icon: "📊",
-      title: "Análise Preditiva",
-      description: "Antecipe tendências de mercado e comportamento do cliente com modelos de machine learning avançados."
+      icon: "📞",
+      title: "Prospecção Ativa por Telefone",
+      description: "Impulsione suas vendas com uma IA que faz ligações, qualifica leads, apresenta produtos e até agenda conversas com seus vendedores, tudo de forma automática."
     },
     {
-      icon: "⚙️",
-      title: "Automação de Processos",
-      description: "Otimize operações repetitivas e libere sua equipe para focar em atividades estratégicas de maior valor."
+      icon: "🧠",
+      title: "IA de Conversação Avançada (Ex: Jarvis)",
+      description: "Experimente uma IA de conversação de ponta, capaz de atuar como um assistente pessoal sofisticado, gerenciando tarefas e respondendo a perguntas complexas."
     },
     {
-      icon: "👁️",
-      title: "Visão Computacional",
-      description: "Implemente sistemas de reconhecimento visual para controle de qualidade, segurança e análise de dados visuais."
+      icon: "📅",
+      title: "IA de Agendamento Inteligente",
+      description: "Simplifique a gestão de compromissos. Nosso assistente virtual cuida de agendamentos, envia lembretes e confirma presenças, eliminando a necessidade de intervenção humana."
     },
     {
-      icon: "📈",
-      title: "Business Intelligence",
-      description: "Transforme dados brutos em insights acionáveis com dashboards inteligentes e relatórios automatizados."
-    },
-    {
-      icon: "🎯",
-      title: "Consultoria Estratégica",
-      description: "Desenvolvemos roadmaps personalizados para implementação de IA alinhados aos objetivos do seu negócio."
+      icon: "⚖️",
+      title: "Suporte Jurídico com IA",
+      description: "Agilize seu trabalho legal. Uma IA especializada analisa documentos, identifica cláusulas importantes, pesquisa jurisprudências e gera relatórios com precisão e rapidez."
     }
   ];
 
