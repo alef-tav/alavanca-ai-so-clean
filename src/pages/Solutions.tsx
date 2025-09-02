@@ -10,40 +10,40 @@ const Solutions = () => {
 
   const solutions = [
     {
+      icon: "🎙️",
+      title: "IA de Voz Ultra-Realista",
+      description: "Transforme a comunicação com clientes. Nossa IA interage por voz de forma natural e indistinguível de um humano, ideal para prospecção, agendamento ou suporte.",
+      features: ["Ligações de prospecção e vendas", "Agendamento automatizado", "Suporte telefônico com voz natural", "Experiência do cliente aprimorada"]
+    },
+    {
       icon: "🤖",
-      title: "Chatbots Inteligentes",
-      description: "Automatize o atendimento ao cliente com chatbots que compreendem contexto e oferecem respostas personalizadas 24/7.",
-      features: ["Processamento de linguagem natural", "Integração com CRM", "Aprendizado contínuo", "Suporte multilíngue"]
+      title: "Assistente de Suporte Inteligente",
+      description: "Otimize seu atendimento ao cliente. Nossa IA atua como um assistente virtual, respondendo a perguntas frequentes e direcionando casos complexos para sua equipe humana.",
+      features: ["Respostas a FAQs 24/7", "Solução de problemas básicos", "Direcionamento inteligente de tickets", "Liberação da equipe para casos estratégicos"]
     },
     {
-      icon: "📊",
-      title: "Análise Preditiva",
-      description: "Antecipe tendências de mercado e comportamento do cliente com modelos de machine learning avançados.",
-      features: ["Previsão de demanda", "Análise de churn", "Segmentação inteligente", "Otimização de preços"]
+      icon: "📞",
+      title: "Prospecção Ativa por Telefone",
+      description: "Impulsione suas vendas com uma IA que faz ligações, qualifica leads, apresenta produtos e até agenda conversas com seus vendedores, tudo de forma automática.",
+      features: ["Qualificação de leads automatizada", "Apresentação de produtos/serviços", "Agendamento direto na agenda do vendedor", "Aumento da taxa de conversão"]
     },
     {
-      icon: "⚙️",
-      title: "Automação de Processos",
-      description: "Otimize operações repetitivas e libere sua equipe para focar em atividades estratégicas de maior valor.",
-      features: ["RPA com IA", "Workflows inteligentes", "Detecção de anomalias", "Automação de documentos"]
+      icon: "🧠",
+      title: "IA de Conversação Avançada (Ex: Jarvis)",
+      description: "Experimente uma IA de conversação de ponta, capaz de atuar como um assistente pessoal sofisticado, gerenciando tarefas e respondendo a perguntas complexas.",
+      features: ["Assistência pessoal e gerencial", "Controle de sistemas por voz/texto", "Respostas contextuais e complexas", "Interfaces de interação personalizadas"]
     },
     {
-      icon: "👁️",
-      title: "Visão Computacional",
-      description: "Implemente sistemas de reconhecimento visual para controle de qualidade, segurança e análise de dados visuais.",
-      features: ["Reconhecimento facial", "Detecção de objetos", "Análise de qualidade", "Monitoramento em tempo real"]
+      icon: "📅",
+      title: "IA de Agendamento Inteligente",
+      description: "Simplifique a gestão de compromissos. Nosso assistente virtual cuida de agendamentos, envia lembretes e confirma presenças, eliminando a necessidade de intervenção humana.",
+      features: ["Marcação de reuniões e consultas", "Envio automático de lembretes", "Confirmação de presença", "Redução de faltas e atrasos"]
     },
     {
-      icon: "📈",
-      title: "Business Intelligence",
-      description: "Transforme dados brutos em insights acionáveis com dashboards inteligentes e relatórios automatizados.",
-      features: ["Dashboards interativos", "Relatórios automáticos", "KPIs inteligentes", "Análise de ROI"]
-    },
-    {
-      icon: "🎯",
-      title: "Consultoria Estratégica",
-      description: "Desenvolvemos roadmaps personalizados para implementação de IA alinhados aos objetivos do seu negócio.",
-      features: ["Auditoria de processos", "Roadmap de IA", "Treinamento de equipes", "Suporte contínuo"]
+      icon: "⚖️",
+      title: "Suporte Jurídico com IA",
+      description: "Agilize seu trabalho legal. Uma IA especializada analisa documentos, identifica cláusulas importantes, pesquisa jurisprudências e gera relatórios com precisão e rapidez.",
+      features: ["Revisão e análise de contratos", "Pesquisa de jurisprudências e legislação", "Geração automática de relatórios", "Otimização de tempo para advogados"]
     }
   ];
 
