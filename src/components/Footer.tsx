@@ -1,4 +1,4 @@
-import logo from "@/assets/alavanca-ai-logo.png";
+import logo from "@/assets/logo-marca.png";
 
 const Footer = () => {
   return (

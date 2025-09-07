@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/alavanca-ai-logo.png";
+import logo from "@/assets/logo-marca.png";
 
 const Header = () => {
   return (
