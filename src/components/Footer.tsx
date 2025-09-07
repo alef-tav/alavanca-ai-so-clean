@@ -11,7 +11,7 @@ const Footer = () => {
               <img 
                 src={logo} 
                 alt="Alavanca AI Logo" 
-                className="h-12 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
             <p className="font-poppins text-primary-foreground/80 max-w-md leading-relaxed mb-6">
