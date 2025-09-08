@@ -47,7 +47,7 @@ const Footer = () => {
             <h3 className="font-poppins font-semibold text-lg mb-4">Contato</h3>
             <ul className="space-y-2 font-poppins text-primary-foreground/80">
               <li>contato@alavancaia.online</li>
-              <li><a href="https://wa.me/5511997529072" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">(11) 99752-9072</a></li>
+              <li><a href="https://api.whatsapp.com/send/?phone=5511997529072&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">(11) 99752-9072</a></li>
               <li>São Paulo, SP</li>
               <li><a href="#" className="hover:text-accent transition-colors">Agendar Consultoria</a></li>
             </ul>
