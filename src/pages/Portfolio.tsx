@@ -258,7 +258,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-black font-poppins text-white">
       <Header />
-      <main className="pt-16">
+      <main className="pt-32">
         {/* Hero Header Section */}
         <section className="py-16 px-6 bg-gradient-to-br from-primary/10 to-accent/5">
           <div className="container mx-auto text-center">
