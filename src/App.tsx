@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import DashboardsPersonalizados from "./pages/DashboardsPersonalizados";
 import IAAtendimentoVendas from "./pages/IAAtendimentoVendas";
 import GestaoTrafegoIA from "./pages/GestaoTrafegoIA";
+import AutomacaoProcessos from "./pages/AutomacaoProcessos";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/dashboards-personalizados" element={<DashboardsPersonalizados />} />
           <Route path="/ia-atendimento-vendas" element={<IAAtendimentoVendas />} />
           <Route path="/gestao-trafego-ia" element={<GestaoTrafegoIA />} />
+          <Route path="/automacao-processos" element={<AutomacaoProcessos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

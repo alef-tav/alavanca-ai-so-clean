@@ -38,7 +38,7 @@ const Footer = () => {
               <li><a href="/dashboards-personalizados" className="hover:text-accent transition-colors">Dashboards Personalizados</a></li>
               <li><a href="/ia-atendimento-vendas" className="hover:text-accent transition-colors">IA de Atendimento e Vendas</a></li>
               <li><a href="/gestao-trafego-ia" className="hover:text-accent transition-colors">Gestão de Tráfego com IA</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Automação de Processos</a></li>
+              <li><a href="/automacao-processos" className="hover:text-accent transition-colors">Automação de Processos</a></li>
             </ul>
           </div>
           
