@@ -47,7 +47,7 @@ const HeroSection = () => {
             Ver Nosso Trabalho
           </Button>
           <Button 
-            onClick={() => navigate('/contact')}
+            onClick={() => window.open('https://wa.me/5511997529072', '_blank')}
             variant="outline" 
             size="lg" 
             className="font-poppins font-medium text-lg px-8 py-4 border-2 border-white/80 bg-white/10 text-white hover:bg-white hover:text-primary transition-all min-w-[200px] shadow-lg backdrop-blur-sm"
