@@ -258,7 +258,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-black font-poppins text-white">
       <Header />
-      <main className="pt-16">
+      <main className="pt-32">
         {/* Hero Header Section */}
         <section className="py-16 px-6 bg-gradient-to-br from-primary/10 to-accent/5">
           <div className="container mx-auto text-center">
@@ -308,17 +308,17 @@ const Portfolio = () => {
                     </button>
                   )}
                   <div className="aspect-video relative">
-                    {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/600/400" ? (
-                      <img 
-                        src={video.thumbnail_url} 
-                        alt={video.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center">
-                        <div className="text-6xl opacity-30">🎬</div>
-                      </div>
-                    )}
+                    <img 
+                      src={video.thumbnail_url && !video.thumbnail_url.includes("/api/placeholder/") ? video.thumbnail_url : undefined} 
+                      alt={video.title}
+                      className={`w-full h-full object-cover ${(!video.thumbnail_url || video.thumbnail_url.includes("/api/placeholder/")) ? 'hidden' : ''}`}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div className={`w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center ${(video.thumbnail_url && !video.thumbnail_url.includes("/api/placeholder/")) ? 'hidden' : ''}`}>
+                      <div className="text-6xl opacity-30">🎬</div>
+                    </div>
                     
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
                     
@@ -379,17 +379,17 @@ const Portfolio = () => {
                     </button>
                   )}
                   <div className="aspect-video relative">
-                    {video.thumbnail_url && video.thumbnail_url !== "/api/placeholder/400/300" ? (
-                      <img 
-                        src={video.thumbnail_url} 
-                        alt={video.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center">
-                        <div className="text-4xl opacity-30">🎬</div>
-                      </div>
-                    )}
+                    <img 
+                      src={video.thumbnail_url && !video.thumbnail_url.includes("/api/placeholder/") ? video.thumbnail_url : undefined} 
+                      alt={video.title}
+                      className={`w-full h-full object-cover ${(!video.thumbnail_url || video.thumbnail_url.includes("/api/placeholder/")) ? 'hidden' : ''}`}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div className={`w-full h-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center ${(video.thumbnail_url && !video.thumbnail_url.includes("/api/placeholder/")) ? 'hidden' : ''}`}>
+                      <div className="text-4xl opacity-30">🎬</div>
+                    </div>
                     
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors"></div>
                     
