@@ -39,7 +39,11 @@ const HeroSection = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <Button size="lg" className="font-poppins font-medium text-lg px-8 py-4 bg-accent hover:bg-accent/90 text-primary border-0 min-w-[200px]">
+          <Button 
+            onClick={() => navigate('/solutions')}
+            size="lg" 
+            className="font-poppins font-medium text-lg px-8 py-4 bg-accent hover:bg-accent/90 text-primary border-0 min-w-[200px]"
+          >
             Ver Nosso Trabalho
           </Button>
           <Button 
