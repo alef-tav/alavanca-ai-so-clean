@@ -51,14 +51,18 @@ const Upload = () => {
       // Extract thumbnail from video automatically
       let thumbnailUrl = null;
       try {
+        console.log('Starting thumbnail extraction for:', videoFile.name);
         const thumbnailBlob = await extractVideoThumbnail(videoFile);
+        console.log('Thumbnail extracted successfully, blob URL:', thumbnailBlob);
         
         // Convert blob URL to actual blob
         const response = await fetch(thumbnailBlob);
         const blob = await response.blob();
+        console.log('Blob converted, size:', blob.size, 'type:', blob.type);
         
         // Upload auto-generated thumbnail
         const thumbnailPath = `${Date.now()}-thumbnail.jpg`;
+        console.log('Uploading thumbnail to path:', thumbnailPath);
         const { error: thumbnailError } = await supabase.storage
           .from('thumbnails')
           .upload(thumbnailPath, blob);
@@ -68,12 +72,15 @@ const Upload = () => {
             .from('thumbnails')
             .getPublicUrl(thumbnailPath);
           thumbnailUrl = thumbnailData.publicUrl;
+          console.log('Thumbnail uploaded successfully:', thumbnailUrl);
+        } else {
+          console.error('Thumbnail upload error:', thumbnailError);
         }
         
         // Clean up blob URL
         URL.revokeObjectURL(thumbnailBlob);
       } catch (thumbnailError) {
-        console.log('Failed to extract thumbnail, will use default:', thumbnailError);
+        console.error('Failed to extract thumbnail:', thumbnailError);
         // Use default placeholder if thumbnail extraction fails
         thumbnailUrl = null;
       }
@@ -99,6 +106,7 @@ const Upload = () => {
         .getPublicUrl(videoPath);
 
       // Save to database
+      console.log('Saving video to database with thumbnail URL:', thumbnailUrl);
       const { error: dbError } = await supabase
         .from('videos')
         .insert({
@@ -110,7 +118,12 @@ const Upload = () => {
           thumbnail_url: thumbnailUrl,
         });
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw dbError;
+      }
+
+      console.log('Video saved successfully to database');
 
       toast({
         title: "Sucesso!",
