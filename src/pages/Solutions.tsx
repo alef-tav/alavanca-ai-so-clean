@@ -70,7 +70,7 @@ const Solutions = () => {
       <Header />
       
       {/* Hero Header Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-accent/5">
+      <section className="pt-40 pb-16 bg-gradient-to-br from-primary/10 to-accent/5">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <h1 className="font-poppins font-bold text-4xl md:text-6xl text-primary mb-6 leading-tight">
