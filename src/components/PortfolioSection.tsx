@@ -92,11 +92,6 @@ const PortfolioSection = () => {
           ))}
         </div>
         
-        <div className="text-center">
-          <Button variant="outline" size="lg" className="font-poppins font-medium">
-            Ver Todos os Vídeos
-          </Button>
-        </div>
       </div>
     </section>
   );
