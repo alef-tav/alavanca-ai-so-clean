@@ -18,17 +18,6 @@ const Footer = () => {
               Transformando negócios através da inteligência artificial. 
               Soluções sofisticadas e personalizadas para impulsionar seu crescimento.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <span className="text-lg">📧</span>
-              </a>
-              <a href="#" className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <span className="text-lg">💼</span>
-              </a>
-              <a href="#" className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <span className="text-lg">📱</span>
-              </a>
-            </div>
           </div>
           
           {/* Solutions */}
