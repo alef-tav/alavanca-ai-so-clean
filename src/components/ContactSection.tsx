@@ -18,72 +18,16 @@ const ContactSection = () => {
           </p>
         </div>
         
-        <div className="max-w-2xl mx-auto">
-          <Card className="p-8 border-border/50">
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="font-poppins font-medium text-primary">
-                    Nome Completo
-                  </Label>
-                  <Input 
-                    id="name"
-                    placeholder="Seu nome completo"
-                    className="font-poppins"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="font-poppins font-medium text-primary">
-                    E-mail
-                  </Label>
-                  <Input 
-                    id="email"
-                    type="email"
-                    placeholder="seu@email.com"
-                    className="font-poppins"
-                  />
-                </div>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="font-poppins font-medium text-primary">
-                    Telefone
-                  </Label>
-                  <Input 
-                    id="phone"
-                    placeholder="(11) 99999-9999"
-                    className="font-poppins"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="font-poppins font-medium text-primary">
-                    Empresa
-                  </Label>
-                  <Input 
-                    id="company"
-                    placeholder="Nome da sua empresa"
-                    className="font-poppins"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="message" className="font-poppins font-medium text-primary">
-                  Mensagem
-                </Label>
-                <Textarea 
-                  id="message"
-                  placeholder="Conte-nos sobre seu projeto e como podemos ajudar..."
-                  className="font-poppins min-h-32"
-                />
-              </div>
-              
-              <Button size="lg" className="w-full font-poppins font-medium">
-                Enviar Mensagem
-              </Button>
-            </form>
-          </Card>
+        <div className="max-w-4xl mx-auto">
+          <div className="w-full rounded-lg overflow-hidden border border-border/50 bg-card">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSeTCMJjuRJqYtMCPB6GQa7j1dqXnegJreU7QldzgaJpfMLkvQ/viewform?embedded=true" 
+              className="w-full h-[956px] border-0"
+              title="Formulário de Contato"
+            >
+              Carregando…
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
