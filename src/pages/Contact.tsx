@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -5,8 +6,81 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [empresa, setEmpresa] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!nome || !email || !mensagem) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha nome, email e mensagem.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Email inválido",
+        description: "Por favor, insira um email válido.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nome,
+            email,
+            telefone,
+            empresa,
+            mensagem,
+          }),
+        }
+      );
+
+      toast({
+        title: "Mensagem enviada!",
+        description: "Obrigado pelo contato. Retornaremos em breve!",
+      });
+
+      setNome("");
+      setEmail("");
+      setTelefone("");
+      setEmpresa("");
+      setMensagem("");
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar",
+        description: "Ocorreu um erro. Tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background font-poppins">
       <Header />
@@ -84,7 +158,7 @@ const Contact = () => {
                   <h3 className="font-poppins font-bold text-xl text-primary mb-6">
                     Envie sua Mensagem
                   </h3>
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="font-poppins font-medium text-primary">
@@ -94,6 +168,9 @@ const Contact = () => {
                           id="name"
                           placeholder="Seu nome completo"
                           className="font-poppins"
+                          value={nome}
+                          onChange={(e) => setNome(e.target.value)}
+                          required
                         />
                       </div>
                       <div className="space-y-2">
@@ -105,6 +182,9 @@ const Contact = () => {
                           type="email"
                           placeholder="seu@email.com"
                           className="font-poppins"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
                         />
                       </div>
                     </div>
@@ -118,6 +198,8 @@ const Contact = () => {
                           id="phone"
                           placeholder="(11) 99999-9999"
                           className="font-poppins"
+                          value={telefone}
+                          onChange={(e) => setTelefone(e.target.value)}
                         />
                       </div>
                       <div className="space-y-2">
@@ -128,6 +210,8 @@ const Contact = () => {
                           id="company"
                           placeholder="Nome da sua empresa"
                           className="font-poppins"
+                          value={empresa}
+                          onChange={(e) => setEmpresa(e.target.value)}
                         />
                       </div>
                     </div>
@@ -140,11 +224,19 @@ const Contact = () => {
                         id="message"
                         placeholder="Conte-nos sobre seu projeto e como podemos ajudar..."
                         className="font-poppins min-h-32"
+                        value={mensagem}
+                        onChange={(e) => setMensagem(e.target.value)}
+                        required
                       />
                     </div>
                     
-                    <Button size="lg" className="w-full font-poppins font-medium">
-                      Enviar Mensagem
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full font-poppins font-medium"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Enviando..." : "Enviar Mensagem"}
                     </Button>
                   </form>
                 </Card>
