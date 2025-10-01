@@ -133,17 +133,6 @@ const Contact = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="service" className="font-poppins font-medium text-primary">
-                        Serviço de Interesse
-                      </Label>
-                      <Input 
-                        id="service"
-                        placeholder="Ex: Chatbot, Automação, Vídeos IA..."
-                        className="font-poppins"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
                       <Label htmlFor="message" className="font-poppins font-medium text-primary">
                         Mensagem
                       </Label>
