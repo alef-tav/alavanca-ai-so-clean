@@ -53,6 +53,9 @@ const ContactSection = () => {
     const appsScriptURL =
       "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec";
 
+    // Formatar dados como URLSearchParams para o Google Apps Script
+    const formBody = new URLSearchParams(dadosParaPlanilha).toString();
+
     try {
       // Criar uma Promise com timeout
       const timeoutPromise = new Promise((_, reject) => {
@@ -62,10 +65,7 @@ const ContactSection = () => {
       const fetchPromise = fetch(appsScriptURL, {
         method: "POST",
         mode: "no-cors", // Necessário para Google Apps Script
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dadosParaPlanilha),
+        body: formBody,
       });
 
       await Promise.race([fetchPromise, timeoutPromise]);

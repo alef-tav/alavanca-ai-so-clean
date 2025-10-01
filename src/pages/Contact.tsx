@@ -52,23 +52,23 @@ const Contact = () => {
 
     setIsLoading(true);
 
-    const appsScriptURL =
-      "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec";
+      const appsScriptURL =
+        "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec";
 
-    try {
-      // Criar uma Promise com timeout
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error("Timeout")), 10000);
-      });
+      // Formatar dados como URLSearchParams para o Google Apps Script
+      const formBody = new URLSearchParams(dadosParaPlanilha).toString();
 
-      const fetchPromise = fetch(appsScriptURL, {
-        method: "POST",
-        mode: "no-cors", // Necessário para Google Apps Script
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dadosParaPlanilha),
-      });
+      try {
+        // Criar uma Promise com timeout
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error("Timeout")), 10000);
+        });
+
+        const fetchPromise = fetch(appsScriptURL, {
+          method: "POST",
+          mode: "no-cors", // Necessário para Google Apps Script
+          body: formBody,
+        });
 
       await Promise.race([fetchPromise, timeoutPromise]);
 
