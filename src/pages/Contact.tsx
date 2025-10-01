@@ -7,6 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  nome: z.string().trim().min(1, "Nome é obrigatório").max(100, "Nome muito longo"),
+  email: z.string().trim().email("E-mail inválido").max(255, "E-mail muito longo"),
+  telefone: z.string().trim().max(20, "Telefone muito longo"),
+  empresa: z.string().trim().max(100, "Nome da empresa muito longo"),
+  mensagem: z.string().trim().min(1, "Mensagem é obrigatória").max(1000, "Mensagem muito longa"),
+});
 
 const Contact = () => {
   const { toast } = useToast();
@@ -19,21 +28,23 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!nome || !email || !mensagem) {
-      toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha nome, email e mensagem.",
-        variant: "destructive",
-      });
-      return;
-    }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Validação com zod
+    const dadosParaPlanilha = {
+      nome: nome.trim(),
+      email: email.trim(),
+      telefone: telefone.trim(),
+      empresa: empresa.trim(),
+      mensagem: mensagem.trim(),
+    };
+
+    const validation = contactSchema.safeParse(dadosParaPlanilha);
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
       toast({
-        title: "Email inválido",
-        description: "Por favor, insira um email válido.",
+        title: "Erro de validação",
+        description: firstError.message,
         variant: "destructive",
       });
       return;
@@ -41,41 +52,54 @@ const Contact = () => {
 
     setIsLoading(true);
 
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nome,
-            email,
-            telefone,
-            empresa,
-            mensagem,
-          }),
-        }
-      );
+    const appsScriptURL =
+      "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec";
 
-      toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado pelo contato. Retornaremos em breve!",
+    try {
+      // Criar uma Promise com timeout
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Timeout")), 10000);
       });
 
+      const fetchPromise = fetch(appsScriptURL, {
+        method: "POST",
+        mode: "no-cors", // Necessário para Google Apps Script
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosParaPlanilha),
+      });
+
+      await Promise.race([fetchPromise, timeoutPromise]);
+
+      // Com no-cors, não podemos verificar o status, então assumimos sucesso
+      toast({
+        title: "Mensagem enviada!",
+        description: "Em breve entraremos em contato.",
+      });
+
+      // Limpar formulário
       setNome("");
       setEmail("");
       setTelefone("");
       setEmpresa("");
       setMensagem("");
     } catch (error) {
-      toast({
-        title: "Erro ao enviar",
-        description: "Ocorreu um erro. Tente novamente mais tarde.",
-        variant: "destructive",
-      });
+      console.error("Erro ao enviar formulário:", error);
+      
+      if (error instanceof Error && error.message === "Timeout") {
+        toast({
+          title: "Tempo esgotado",
+          description: "A requisição demorou muito. Tente novamente.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Erro ao enviar",
+          description: "Por favor, tente novamente mais tarde.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }

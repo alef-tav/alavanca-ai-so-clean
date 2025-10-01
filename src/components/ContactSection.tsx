@@ -5,6 +5,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  nome: z.string().trim().min(1, "Nome é obrigatório").max(100, "Nome muito longo"),
+  email: z.string().trim().email("E-mail inválido").max(255, "E-mail muito longo"),
+  telefone: z.string().trim().max(20, "Telefone muito longo"),
+  empresa: z.string().trim().max(100, "Nome da empresa muito longo"),
+  mensagem: z.string().trim().min(1, "Mensagem é obrigatória").max(1000, "Mensagem muito longa"),
+});
 
 const ContactSection = () => {
   const [nome, setNome] = useState("");
@@ -18,22 +27,22 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validação básica
-    if (!nome.trim() || !email.trim() || !mensagem.trim()) {
-      toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha nome, e-mail e mensagem.",
-        variant: "destructive",
-      });
-      return;
-    }
+    // Validação com zod
+    const dadosParaPlanilha = {
+      nome: nome.trim(),
+      email: email.trim(),
+      telefone: telefone.trim(),
+      empresa: empresa.trim(),
+      mensagem: mensagem.trim(),
+    };
 
-    // Validação de e-mail
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    const validation = contactSchema.safeParse(dadosParaPlanilha);
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
       toast({
-        title: "E-mail inválido",
-        description: "Por favor, insira um e-mail válido.",
+        title: "Erro de validação",
+        description: firstError.message,
         variant: "destructive",
       });
       return;
@@ -44,45 +53,51 @@ const ContactSection = () => {
     const appsScriptURL =
       "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec";
 
-    const dadosParaPlanilha = {
-      nome: nome.trim(),
-      email: email.trim(),
-      telefone: telefone.trim(),
-      empresa: empresa.trim(),
-      mensagem: mensagem.trim(),
-    };
-
     try {
-      const resposta = await fetch(appsScriptURL, {
+      // Criar uma Promise com timeout
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Timeout")), 10000);
+      });
+
+      const fetchPromise = fetch(appsScriptURL, {
         method: "POST",
+        mode: "no-cors", // Necessário para Google Apps Script
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dadosParaPlanilha),
       });
 
-      if (resposta.ok) {
-        toast({
-          title: "Mensagem enviada!",
-          description: "Em breve entraremos em contato.",
-        });
+      await Promise.race([fetchPromise, timeoutPromise]);
 
-        // Limpar formulário
-        setNome("");
-        setEmail("");
-        setTelefone("");
-        setEmpresa("");
-        setMensagem("");
-      } else {
-        throw new Error("Erro na resposta do servidor");
-      }
+      // Com no-cors, não podemos verificar o status, então assumimos sucesso
+      toast({
+        title: "Mensagem enviada!",
+        description: "Em breve entraremos em contato.",
+      });
+
+      // Limpar formulário
+      setNome("");
+      setEmail("");
+      setTelefone("");
+      setEmpresa("");
+      setMensagem("");
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
-      toast({
-        title: "Erro ao enviar",
-        description: "Por favor, tente novamente mais tarde.",
-        variant: "destructive",
-      });
+      
+      if (error instanceof Error && error.message === "Timeout") {
+        toast({
+          title: "Tempo esgotado",
+          description: "A requisição demorou muito. Tente novamente.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Erro ao enviar",
+          description: "Por favor, tente novamente mais tarde.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
