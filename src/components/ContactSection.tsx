@@ -140,7 +140,7 @@ const ContactSection = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-poppins font-medium text-primary">
-                    Nome Completo *
+                    Nome Completo
                   </Label>
                   <Input
                     id="name"
@@ -153,7 +153,7 @@ const ContactSection = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email" className="font-poppins font-medium text-primary">
-                    E-mail *
+                    E-mail
                   </Label>
                   <Input
                     id="email"
@@ -196,7 +196,7 @@ const ContactSection = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="message" className="font-poppins font-medium text-primary">
-                  Mensagem *
+                  Mensagem
                 </Label>
                 <Textarea
                   id="message"
