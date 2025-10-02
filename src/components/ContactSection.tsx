@@ -50,11 +50,18 @@ const ContactSection = () => {
 
     setIsLoading(true);
 
-    const appsScriptURL =
-      "https://script.google.com/macros/s/AKfycbx-YGYdRogLW6zxnt32qiJfOqAd_T2G86F2CO_Q8bWkID0FHwGjnt5hkaXwhsmEznWsGQ/exec";
+    const sheetDB_URL = "https://sheetdb.io/api/v1/jwh001gohrbam";
 
-    // Formatar dados como URLSearchParams para o Google Apps Script
-    const formBody = new URLSearchParams(dadosParaPlanilha).toString();
+    // O SheetDB espera o corpo no formato { data: { "Nome Coluna": "valor" } }
+    const dadosParaSheetDB = {
+      data: {
+        "Nome Completo": dadosParaPlanilha.nome,
+        "E-mail": dadosParaPlanilha.email,
+        "Telefone": dadosParaPlanilha.telefone,
+        "Empresa": dadosParaPlanilha.empresa,
+        "Mensagem": dadosParaPlanilha.mensagem,
+      },
+    };
 
     try {
       // Criar uma Promise com timeout
@@ -62,29 +69,40 @@ const ContactSection = () => {
         setTimeout(() => reject(new Error("Timeout")), 10000);
       });
 
-      const fetchPromise = fetch(appsScriptURL, {
+      const fetchPromise = fetch(sheetDB_URL, {
         method: "POST",
-        mode: "no-cors", // Necessário para Google Apps Script
-        body: formBody,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosParaSheetDB),
       });
 
-      await Promise.race([fetchPromise, timeoutPromise]);
+      const resposta = (await Promise.race([fetchPromise, timeoutPromise])) as Response;
 
-      // Com no-cors, não podemos verificar o status, então assumimos sucesso
-      toast({
-        title: "Mensagem enviada!",
-        description: "Em breve entraremos em contato.",
-      });
+      // Verifica o status HTTP
+      if (resposta.ok) {
+        toast({
+          title: "Mensagem enviada!",
+          description: "Em breve entraremos em contato.",
+        });
 
-      // Limpar formulário
-      setNome("");
-      setEmail("");
-      setTelefone("");
-      setEmpresa("");
-      setMensagem("");
+        // Limpar formulário
+        setNome("");
+        setEmail("");
+        setTelefone("");
+        setEmpresa("");
+        setMensagem("");
+      } else {
+        console.error("Erro no SheetDB:", await resposta.text());
+        toast({
+          title: "Erro ao enviar",
+          description: "Por favor, tente novamente mais tarde.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
-      
+
       if (error instanceof Error && error.message === "Timeout") {
         toast({
           title: "Tempo esgotado",
