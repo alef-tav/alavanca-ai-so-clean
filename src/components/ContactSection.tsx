@@ -51,7 +51,7 @@ const ContactSection = () => {
     setIsLoading(true);
 
     const appsScriptURL =
-      "https://script.google.com/macros/s/AKfycbw0lFYk5rAARm1I2-YEQOdbBze3SST6UYDFj2NqCoDoJyeMe5tOJ8l2OHzu7lr9ZZ11Rw/exec";
+      "https://script.google.com/macros/s/AKfycbx-YGYdRogLW6zxnt32qiJfOqAd_T2G86F2CO_Q8bWkID0FHwGjnt5hkaXwhsmEznWsGQ/exec";
 
     // Formatar dados como URLSearchParams para o Google Apps Script
     const formBody = new URLSearchParams(dadosParaPlanilha).toString();
