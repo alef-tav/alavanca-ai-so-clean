@@ -57,8 +57,8 @@ const Contact = () => {
     // O SheetDB espera o corpo no formato { data: { "Nome Coluna": "valor" } }
     const dadosParaSheetDB = {
       data: {
-        "Nome Completo": dadosParaPlanilha.nome,
-        "E-mail": dadosParaPlanilha.email,
+        "Nome": dadosParaPlanilha.nome,
+        "Email": dadosParaPlanilha.email,
         "Telefone": dadosParaPlanilha.telefone,
         "Empresa": dadosParaPlanilha.empresa,
         "Mensagem": dadosParaPlanilha.mensagem,
